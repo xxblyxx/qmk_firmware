@@ -120,4 +120,5 @@ via*.json
 
 
 # Include keymap svg
-!keyboards/planck/rev7/keymaps/bly/*
+!keyboards/planck/rev7/keymaps/bly/**
+!keyboards/planck/rev7/keymaps/blyMiryoku/**
