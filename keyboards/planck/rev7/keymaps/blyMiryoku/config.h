@@ -18,6 +18,9 @@
 
 #pragma once
 
+//adjust home row mod shift 
+#define TAPPING_TERM 250
+
 #define AUDIO_INIT_DELAY
 
 #ifdef AUDIO_ENABLE
