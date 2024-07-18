@@ -20,6 +20,9 @@
 
 //adjust home row mod shift 
 #define TAPPING_TERM 250
+//makes it possible to do rolling combos; prevents the home row mod from conflict when typing fast 
+//#define PERMISSIVE_HOLD
+//#define TAPPING_TERM_PER_KEY //custom tapping term per key
 
 #define AUDIO_INIT_DELAY
 

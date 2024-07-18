@@ -122,3 +122,13 @@ via*.json
 # Include keymap svg
 !keyboards/planck/rev7/keymaps/bly/**
 !keyboards/planck/rev7/keymaps/blyMiryoku/**
+keyboards/mjig/rev1/keyboard.json
+keyboards/mjig/rev1/readme.md
+keyboards/mjig/rev1/keymaps/default/config.h
+keyboards/mjig/rev1/keymaps/default/keymap.c
+keyboards/mousejiggler/mousejiggler/config.h
+keyboards/mousejiggler/mousejiggler/info.json
+keyboards/mousejiggler/mousejiggler/mousejiggler.c
+keyboards/mousejiggler/mousejiggler/mousejiggler.h
+keyboards/mousejiggler/mousejiggler/rules.mk
+keyboards/mousejiggler/mousejiggler/keymaps/default/keymap.c

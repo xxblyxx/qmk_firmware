@@ -20,6 +20,24 @@ enum planck_layers { _QWERTY, _WASD, _LOWER, _RAISE, _ADJUST, _FUNCTION, _FUNCTI
 
 enum planck_keycodes { QWERTY = SAFE_RANGE, GAMING, BACKLIT };
 
+/*
+//Tap Dance Declarations
+enum {
+  TD_Q_UNDO = 0,
+  TD_W_CUT = 1,
+  TD_E_COPY = 2,
+  TD_R_PASTE = 3
+};
+
+//Tap Dance Definitions
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_Q_UNDO]  = ACTION_TAP_DANCE_DOUBLE(KC_Q, LCTL(KC_Z)),
+    [TD_W_CUT]  = ACTION_TAP_DANCE_DOUBLE(KC_W, LCTL(KC_X)),
+    [TD_E_COPY]  = ACTION_TAP_DANCE_DOUBLE(KC_E, LCTL(KC_C)),
+    [TD_R_PASTE]  = ACTION_TAP_DANCE_DOUBLE(KC_R, LCTL(KC_V))
+};
+*/
+
 #define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 #define FUNK MO(_FUNCTION)
@@ -40,10 +58,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * | FUNK | Ctrl | Alt  | GUI  |Lower | Space| Space|Raise |   /  | Left | Down |Right |
  * `-----------------------------------------------------------------------------------'
+
+     KC_ESC,    KC_Q,    KC_W,    KC_E,          KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+TD(TD_Q_UNDO), TD(TD_W_CUT), TD(TD_E_COPY), TD(TD_R_PASTE),
  */
 [_QWERTY] = LAYOUT_planck_grid(
-    KC_ESC,    KC_Q,    KC_W,    KC_E,          KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-    LT(RAISE,KC_TAB),    MT(MOD_LSFT,KC_A),MT(MOD_LCTL, KC_S),    MT(MOD_LALT, KC_D), MT(MOD_LGUI, KC_F),    KC_G,    KC_H,    MT(MOD_RGUI,KC_J), MT(MOD_RALT,KC_K), MT(MOD_RCTL,KC_L), MT(MOD_RSFT,KC_SCLN), KC_QUOT,
+    KC_ESC,    KC_Q,    KC_W,    KC_E,          KC_R,     KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
+    LT(RAISE,  KC_TAB), MT(MOD_LSFT,KC_A),MT(MOD_LCTL, KC_S),    MT(MOD_LALT, KC_D), MT(MOD_LGUI, KC_F),    KC_G,    KC_H,    MT(MOD_RGUI,KC_J), MT(MOD_RALT,KC_K), MT(MOD_RCTL,KC_L), MT(MOD_RSFT,KC_SCLN), KC_QUOT,
     KC_LSFT,   KC_Z,    KC_X,    KC_C,          KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_UP,   MT(MOD_RSFT, KC_ENT),
     OSL(FUNK), KC_LCTL, KC_LALT, OSM(MOD_LGUI), LOWER,   LT(WORK,KC_SPC), LT(GAME,KC_SPC),  RAISE,   KC_SLSH, KC_LEFT, KC_DOWN, KC_RGHT
 ),
@@ -60,15 +81,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_WASD] = LAYOUT_planck_grid(
     KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-    KC_TAB,    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
+    LT(RAISE,KC_TAB),    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
     KC_LSFT,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_UP,   MT(MOD_RSFT, KC_ENT),
-    OSL(FUNK), KC_LCTL, KC_LALT, OSM(MOD_LGUI), LOWER,   KC_RSFT, KC_SPC,  RAISE,   KC_SLSH, KC_LEFT, KC_DOWN, KC_RGHT
+    OSL(FUNK), KC_LCTL, KC_LALT, OSM(MOD_LGUI), LOWER,   LT(WORK,KC_SPC), LT(GAME,KC_SPC),  RAISE,   KC_SLSH, KC_LEFT, KC_DOWN, KC_RGHT
 ),
 /* Lower
  * ,-----------------------------------------------------------------------------------.
  * |      |      |      |      |      |      |      |   7  |   8  |  9   |      | DEL  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |   4  |   5  |  6   |      |      |
+ * |      |      |MacRT |MacUp |MacLt |      |      |   4  |   5  |  6   |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |  0   |   1  |   2  |  3   |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -77,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_LOWER] = LAYOUT_planck_grid(
     _______, _______, _______, _______, _______, _______, _______, KC_7,    KC_8,   KC_9,    _______, KC_DEL,   
-    _______, _______, _______, _______, _______, _______, _______, KC_4,    KC_5,   KC_6,    _______, _______,
+    _______, _______, LCTL(KC_LEFT), LCTL(KC_UP), LCTL(KC_RGHT), _______, _______, KC_4,    KC_5,   KC_6,    _______, _______,
     _______, _______, _______, _______, _______, _______, _______, KC_1,    KC_2,   KC_3,    _______, _______,
     _______, _______, _______, _______, _______, _______, _______, KC_0,    KC_DOT, _______, _______, _______
 ),
@@ -303,3 +324,17 @@ bool dip_switch_update_user(uint8_t index, bool active) {
     }
     return true;
 }
+/*
+//custom tapping term TD(TD_Q_UNDO), TD(TD_W_CUT), TD(TD_E_COPY), TD(TD_R_PASTE)
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case TD(TD_Q_UNDO):
+        case TD(TD_W_CUT):
+        case TD(TD_E_COPY):
+        case TD(TD_R_PASTE):
+            return 150;
+        default:
+            return TAPPING_TERM;
+    }
+}
+*/
