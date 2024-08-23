@@ -16,6 +16,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/*todo
+change to layer switch to like choc
+move del to left bottom left key
+*/
+
+
 #include QMK_KEYBOARD_H
 
 #define FUNK MO(4)
@@ -27,38 +33,50 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       MT(MOD_LCTL, KC_TAB),    KC_A,    KC_S,    KC_D,    KC_F,    KC_G,           KC_H,    KC_J,    KC_K,    KC_L, KC_SCLN, KC_QUOT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  MT(MOD_RSFT, KC_ENT),
+      MT(MOD_LSFT, KC_DEL),    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,  MT(MOD_RSFT, KC_ENT),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, LT(1, KC_SPC),  MO(1),        MO(2), LT(2, KC_SPC), KC_RALT
+                                          KC_LGUI, KC_SPC,  TO(0),      LT(3, KC_NO), KC_SPC, KC_RALT
                                       //`--------------------------'  `--------------------------'
 
   ),
 
     [1] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TILD,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_DEL,
+       KC_TILD,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PGUP, KC_LEFT,   KC_UP, KC_RIGHT, KC_HOME, XXXXXXX,
+      MT(MOD_LCTL, KC_TAB), KC_PGUP, KC_HOME, LCTL(KC_LEFT), LCTL(KC_UP), LCTL(KC_RGHT), XXXXXXX, KC_LEFT, KC_UP,   KC_DOWN, KC_RIGHT, KC_QUOT, 
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_PGDN, XXXXXXX, KC_DOWN, XXXXXXX, KC_END, XXXXXXX,
+      MT(MOD_LSFT, KC_DEL), KC_PGDN, KC_END, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, KC_COMM,  KC_DOT, KC_SLSH,  MT(MOD_RSFT, KC_ENT),
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, KC_SPC,  _______,     MO(3),  KC_SPC,  KC_RALT
+                                          KC_LGUI, KC_SPC,  TO(0),     LT(3, KC_NO),  KC_SPC,  KC_RALT
                                       //`--------------------------'  `--------------------------'
   ),
 
     [2] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      KC_TILD, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_DEL,
+      KC_TILD, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                      KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LCTL, XXXXXXX, LCTL(KC_LEFT), LCTL(KC_UP), LCTL(KC_RGHT), XXXXXXX,       KC_MINS,  KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS,  KC_GRV,
+      MT(MOD_LCTL, KC_TAB), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,         KC_MINS,  KC_EQL, KC_LBRC, KC_RBRC, KC_BSLS, KC_GRV,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE, XXXXXXX,
+      MT(MOD_LSFT, KC_DEL), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_BSLS, KC_PIPE,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, KC_SPC,  MO(3),      _______,  KC_SPC,  KC_RALT
+                                          KC_LGUI, KC_SPC,  TO(0),      LT(3, KC_NO),  KC_SPC,  KC_RALT
                                       //`--------------------------'  `--------------------------'
   ),
 
     [3] = LAYOUT_split_3x6_3(
+  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      MT(MOD_LCTL, KC_TAB), XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,
+  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
+      MT(MOD_LSFT, KC_DEL), XXXXXXX, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY,                      XXXXXXX, KC_F11,  KC_F12, XXXXXXX, XXXXXXX, KC_ENT,
+  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
+                                          KC_LGUI, KC_SPC,  TO(0)  ,   LT(3, KC_NO),  KC_SPC,  KC_RALT
+                                      //`--------------------------'  `--------------------------'
+
+  ),
+    [4] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
       QK_BOOT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -66,21 +84,65 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, KC_MNXT, KC_VOLD, KC_VOLU, KC_MPLY,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, KC_SPC,  _______,   _______,  KC_SPC,  KC_RALT
+                                          KC_LGUI, KC_SPC,  TO(0),   _______,  KC_SPC,  KC_RALT
                                       //`--------------------------'  `--------------------------'
-  ),
-    [4] = LAYOUT_split_3x6_3(
-  //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,
-  //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, KC_F11,  KC_F12, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LGUI, KC_SPC,  _______,   _______,  KC_SPC,  KC_RALT
-                                      //`--------------------------'  `--------------------------'
+
   )
 };
+
+uint8_t mod_state;
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    mod_state = get_mods();
+    switch (keycode) {
+        case LT(3, KC_NO):
+            //layer hold and layer increment
+            if (record->tap.count && record->event.pressed) {
+                if (IS_LAYER_ON(0)) {
+                    layer_move(1); }
+                else if (IS_LAYER_ON(1)) {
+                    layer_move(2); }
+                else if (IS_LAYER_ON(2)) {
+                    layer_move(3); }
+                else if (IS_LAYER_ON(3)) {
+                    layer_move(4); }
+            return false;
+        }
+        case KC_SLSH:
+                {
+                // Initialize a boolean variable that keeps track
+                // of the delete key status: registered or not?
+                static bool delkey_registered;
+                if (record->event.pressed) {
+                    // Detect the activation of either shift keys
+                    if (mod_state & MOD_MASK_CTRL) {
+                        // First temporarily canceling both shifts so that
+                        // shift isn't applied to the KC_DEL keycode
+                        del_mods(MOD_MASK_CTRL);
+                        register_code(KC_BSLS);
+                        // Update the boolean variable to reflect the status of KC_DEL
+                        delkey_registered = true;
+                        // Reapplying modifier state so that the held shift key(s)
+                        // still work even after having tapped the Backspace/Delete key.
+                        set_mods(mod_state);
+                        return false;
+                    }
+                } else { // on release of KC_BSPC
+                    // In case KC_DEL is still being sent even after the release of KC_BSPC
+                    if (delkey_registered) {
+                        unregister_code(KC_SLSH);
+                        delkey_registered = false;
+                        return false;
+                    }
+                }
+                // Let QMK process the KC_BSPC keycode as usual outside of shift
+                return true;
+            }
+        }
+    return true;
+};
+
+
+
 
 #ifdef OLED_ENABLE
 
