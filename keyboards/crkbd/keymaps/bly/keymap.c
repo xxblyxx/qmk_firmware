@@ -141,7 +141,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
-
+//custome tapping term
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case MT(MOD_LCTL, KC_TAB):
+            return 125;
+        case MT(MOD_LSFT, KC_DEL):
+            return TAPPING_TERM;
+        default:
+            return TAPPING_TERM;
+    }
+}
 
 
 #ifdef OLED_ENABLE
